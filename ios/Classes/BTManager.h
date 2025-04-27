@@ -1,15 +1,14 @@
 // BTManager.h
 #import <Foundation/Foundation.h>
-#import "JL_BLEMultiple.h"
-#import "JL_EntityM.h"
+#import <JL_BLEKit/JL_BLEKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, BTConnectionStatus) {
-    BTConnectionStatusDisconnected,
-    BTConnectionStatusConnecting,
-    BTConnectionStatusConnected,
-    BTConnectionStatusFailed
+  BTConnectionStatusDisconnected,
+  BTConnectionStatusConnecting,
+  BTConnectionStatusConnected,
+  BTConnectionStatusFailed
 };
 
 @protocol BTManagerDelegate <NSObject>
@@ -27,19 +26,24 @@ typedef NS_ENUM(NSInteger, BTConnectionStatus) {
 + (instancetype)sharedInstance;
 
 // Properties from your sample
-@property (strong, nonatomic) JL_BLEMultiple *mBleMultiple;
-@property (weak, nonatomic) JL_EntityM *mBleEntityM;     // Current operating device (weak reference)
-@property (strong, nonatomic) NSString *mBleUUID;
-@property (weak, nonatomic) NSArray *mFoundArray;        // Scanned devices (weak reference)
-@property (weak, nonatomic) NSArray *mConnectedArray;    // Connected devices (weak reference)
+@property(strong, nonatomic) JL_BLEMultiple *mBleMultiple;
+@property(weak, nonatomic)
+    JL_EntityM *mBleEntityM; // Current operating device (weak reference)
+@property(strong, nonatomic) NSString *mBleUUID;
+@property(weak, nonatomic)
+    NSArray *mFoundArray; // Scanned devices (weak reference)
+@property(weak, nonatomic)
+    NSArray *mConnectedArray; // Connected devices (weak reference)
 
 // Additional useful properties
-@property (nonatomic, weak) id<BTManagerDelegate> delegate;
-@property (nonatomic, assign, readonly) BTConnectionStatus connectionStatus;
-@property (nonatomic, assign) BOOL autoReconnect;
+@property(nonatomic, weak) id<BTManagerDelegate> delegate;
+@property(nonatomic, assign, readonly) BTConnectionStatus connectionStatus;
+@property(nonatomic, assign) BOOL autoReconnect;
 
 // Methods
-- (void)setupWithFiltering:(BOOL)filteringEnabled pairingEnabled:(BOOL)pairingEnabled timeout:(NSInteger)timeout;
+- (void)setupWithFiltering:(BOOL)filteringEnabled
+            pairingEnabled:(BOOL)pairingEnabled
+                   timeout:(NSInteger)timeout;
 - (void)setDeviceTypesToScan:(NSArray *)deviceTypes;
 - (void)startScan;
 - (void)stopScan;
@@ -52,5 +56,3 @@ typedef NS_ENUM(NSInteger, BTConnectionStatus) {
 @end
 
 NS_ASSUME_NONNULL_END
-
-

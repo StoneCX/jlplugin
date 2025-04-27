@@ -26,4 +26,8 @@ abstract class MyjlPluginPlatform extends PlatformInterface {
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+  Future<void> startScan() {
+    throw UnimplementedError('startScan() has not been implemented.');
+  }
 }

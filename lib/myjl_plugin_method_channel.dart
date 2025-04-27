@@ -11,7 +11,14 @@ class MethodChannelMyjlPlugin extends MyjlPluginPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version = await methodChannel.invokeMethod<String>(
+      'getPlatformVersion',
+    );
     return version;
+  }
+
+  @override
+  Future<void> startScan() async {
+    await methodChannel.invokeMethod('startScan');
   }
 }
