@@ -14,12 +14,27 @@ A new Flutter plugin project.
   s.author           = { 'Your Company' => 'email@example.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
+  s.vendored_frameworks = [
+    'Frameworks/JL_AdvParse.framework',
+    'Frameworks/JL_BLEKit.framework',
+    'Frameworks/JL_HashPair.framework',
+    'Frameworks/OTALib.framework',
+  ] # 引用框架
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   s.platform = :ios, '12.0'
 
   # Flutter.framework does not contain a i386 slice.
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
+  s.pod_target_xcconfig = { 
+    'DEFINES_MODULE' => 'YES', 
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386',
+    'OTHER_LDFLAGS' => '-ObjC' 
+  }
+
+  s.info_plist = {
+    'NSBluetoothAlwaysUsageDescription' => 'This app uses Bluetooth to connect to devices.',
+    'NSBluetoothPeripheralUsageDescription' => 'This app uses Bluetooth to connect to devices.',
+  }
 
   # If your plugin requires a privacy manifest, for example if it uses any
   # required reason APIs, update the PrivacyInfo.xcprivacy file to describe your
